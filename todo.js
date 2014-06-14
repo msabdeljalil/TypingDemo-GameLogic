@@ -49,7 +49,8 @@ $(document).ready(function(){
 
   var listen = function(){
     $(document).keypress(function(event){
-      newCheck(event.key);
+      newCheck( String.fromCharCode(event.which) );      
+      // newCheck(event.key); // Firefox is awesome!!
       isComplete()
     });
   }; //listen
