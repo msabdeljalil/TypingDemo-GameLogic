@@ -6,12 +6,7 @@ $(document).ready(function(){
   var startTime = new Date();
   var endTime;
   var CPS;
-  var showCursor = function(){
-    var next = (counter + 1)
-    $("#base span:nth-child("+counter+")").removeClass('cursor')
-    $("#base span:nth-child("+next+")").addClass('cursor')
-  };
-  showCursor();
+
 
   var spannify = function(text){
     var spannedText = ''
@@ -29,15 +24,25 @@ $(document).ready(function(){
     console.log("Total CPS(chars per second): " + (totalKeypress / ((endTime - startTime)/1000)))
   };
 
+  // ----------------------------------------
+
+  var moveCursor = function(){
+    $("#base span:nth-child("+counter+")").removeClass('cursor')
+    $("#base span:nth-child("+(counter + 1)+")").addClass('cursor')
+  };
+
+  var markBGRed = function(){
+    $(".cursor").css("color", "red")
+  };
 
   var updateIncorrect = function(){
+    typos++;
     $("#incorrect").html(typos);
   };//incorrect
 
   var addClassTyped = function(){
     $("#base span:nth-child("+counter+")").removeClass('untyped')
     $("#base span:nth-child("+counter+")").addClass('typed')
-    showCursor();
   }
 
   var isComplete = function(){
@@ -61,22 +66,22 @@ $(document).ready(function(){
   var newCheck = function(keypress){
     characters = getChars()
     if (keypress === characters[counter] ){
-        $("body").css("background-color", "green");
-        counter++
-        addClassTyped();
-    } else {
-      $("body").css("background-color", "red")
-      typos++;
+      counter++
+      addClassTyped();
+      moveCursor();
+    } 
+    else {
+      markBGRed()
       updateIncorrect();
     }
   }; //newCheck
 
   var listen = function(){
     $(document).keypress(function(event){
+      event.preventDefault()
       totalKeypress++;
-      showCursor();
+      moveCursor();
       newCheck( String.fromCharCode(event.which) );      
-      // newCheck(event.key); // Firefox is awesome!!
       isComplete()
     });
   }; //listen
