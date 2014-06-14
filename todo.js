@@ -43,7 +43,7 @@ $(document).ready(function(){
   var addClassTyped = function(){
     $("#base span:nth-child("+counter+")").removeClass('untyped')
     $("#base span:nth-child("+counter+")").addClass('typed')
-  }
+  };
 
   var isComplete = function(){
     if (counter === totalChars){
@@ -61,7 +61,7 @@ $(document).ready(function(){
       chars.push(e.innerHTML)
     })
     return chars
-  }//getChars
+  };//getChars
 
   var newCheck = function(keypress){
     characters = getChars()
