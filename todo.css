@@ -2,9 +2,14 @@ body {
   background-color: green;
 }
 
+pre {
+	background-color: lightblue;
+	margin: 0;
+	padding: 0;
+}
 .typed {
 	color: yellow;
-	text-decoration: underline;
+	/*text-decoration: underline;*/
 }
 
 .cursor {
