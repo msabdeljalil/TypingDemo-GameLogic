@@ -1,3 +1,16 @@
 body {
   background-color: green;
 }
+
+.typed {
+	color: yellow;
+	text-decoration: underline;
+}
+
+.cursor {
+	background-color: gray;
+}
+
+/*.untyped {
+	color: blue;
+}*/
